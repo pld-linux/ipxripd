@@ -1,7 +1,7 @@
 Summary:	IPX RIP/SAP daemon - routing for IPX networks
 Name:		ipxripd
 Version:	0.7
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -54,7 +54,6 @@ else
 	echo "Run \"/etc/rc.d/init.d/ipxripd start\" to start IPX routing daemon."
 fi
 touch /var/log/ipxd
-chmod 640 /var/log/cron
 
 %preun
 if [ "$1" = "0" ]; then
