@@ -3,7 +3,7 @@
 # Run in passive mode? Suintable for workstations, NOT routers
 PASSIVE=no
 
-LOGFILE=/var/log/ipxd
+LOGFILE=/var/log/ipxripd
 
 # default /etc/ipx_ticks
 TICKSFILE=
