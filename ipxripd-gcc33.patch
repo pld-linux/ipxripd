@@ -1,0 +1,11 @@
+--- ipxripd/ipxd.h~	1996-02-08 16:07:56.000000000 +0000
++++ ipxripd/ipxd.h	2003-07-04 21:32:43.000000000 +0000
+@@ -55,7 +55,7 @@
+ extern FILE *log_file;
+ extern int passive;
+ 
+-extern int check_request;
++extern volatile int check_request;
+ 
+ struct ipx_interface *first_interface(void);
+ struct ipx_interface *next_interface(struct ipx_interface *ifc);
