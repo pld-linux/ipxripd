@@ -14,8 +14,8 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
 Patch1:		%{name}-gcc33.patch
-Prereq:		rc-scripts >= 0.2.0
-Prereq:		/sbin/chkconfig
+PreReq:		rc-scripts >= 0.2.0
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,7 +45,7 @@ IPX.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},/var/log} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig,logrotate.d,rc.d/init.d}
+	$RPM_BUILD_ROOT/etc/{sysconfig,logrotate.d,rc.d/init.d}
 
 install ipxd $RPM_BUILD_ROOT%{_sbindir}
 install ipxd.8 $RPM_BUILD_ROOT%{_mandir}/man8
