@@ -1,0 +1,5 @@
+/var/log/ppp.log {
+	postrotate
+		/etc/rc.d/init.d/ipxripd restart >/dev/null 2>&1
+	endscript
+}
