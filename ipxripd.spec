@@ -6,8 +6,6 @@ Version:	0.7
 Release:	5
 License:	GPL
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Vendor:		Volker Lendecke <lendecke@namu01.gwdg.de>
 Source0:	ftp://ftp.gwdg.de/pub/linux/misc/ncpfs/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
