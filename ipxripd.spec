@@ -42,7 +42,7 @@ for dir in etc/{rc.d/init.d,sysconfig/daemons} usr/sbin usr/man/man{5,8}; do
 done
 
 install -o root -g root -m 644 ipx_ticks $DESTDIR/etc
-install -o root -g root -m 755 -s ipxd $DESTDIR/usr/sbin
+install -o root -g root -m 755 -s ipxd $DESTDIR%{_sbindir}
 install -o root -g root -m 644 ipxd.8 $DESTDIR%{_mandir}/man8
 install -o root -g root -m 644 ipx_ticks.5 $DESTDIR%{_mandir}/man5
 install -o root -g root -m 755 $RPM_SOURCE_DIR/generic-LST.init $DESTDIR/etc/rc.d/init.d/ipxripd
@@ -51,7 +51,7 @@ install -o root -g root -m 755 $RPM_SOURCE_DIR/generic-LST.init $DESTDIR/etc/rc.
 cat > daemon.cfg <<EOF
 IDENT=ipxripd
 DESCRIPTIVE="IPX RIP/SAP daemon"
-DAEMON=/usr/sbin/ipxd
+DAEMON=%{_sbindir}/ipxd
 DAEMON_ARGS=-r
 ONBOOT=no
 EOF
@@ -84,11 +84,11 @@ lisa --SysV-init remove ipxripd $1
 %config /etc/ipx_ticks
 %config /etc/sysconfig/daemons/ipxripd
 /etc/rc.d/init.d/ipxripd
-/usr/sbin/ipxd
+%{_sbindir}/ipxd
 %{_mandir}/man5/ipx_ticks.5.gz
 %{_mandir}/man8/ipxd.8.gz
 
 
 %ChangeLog
 * Mon Jan 01 1997 ...
-$Id: ipxripd.spec,v 1.2 1999-05-17 10:23:22 kloczek Exp $
+$Id: ipxripd.spec,v 1.3 1999-05-17 23:39:55 kloczek Exp $
