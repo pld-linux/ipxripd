@@ -54,8 +54,6 @@ install %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/ipxripd
 
 :> $RPM_BUILD_ROOT/var/log/ipxripd
 
-gzip -9nf README ipx_ticks
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -78,7 +76,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc {README,ipx_ticks}.gz
+%doc README ipx_ticks
 
 %attr(754,root,root) /etc/rc.d/init.d/ipxripd
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
