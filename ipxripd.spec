@@ -8,6 +8,7 @@ License:	GPL
 Group:		Networking/Daemons
 Vendor:		Volker Lendecke <lendecke@namu01.gwdg.de>
 Source0:	ftp://ftp.gwdg.de/pub/linux/misc/ncpfs/%{name}-%{version}.tar.gz
+# Source0-md5:	5e1ae45421d45eca67a435c6e5467ea1
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
