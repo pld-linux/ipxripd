@@ -43,8 +43,8 @@ done
 
 install -o root -g root -m 644 ipx_ticks $DESTDIR/etc
 install -o root -g root -m 755 -s ipxd $DESTDIR/usr/sbin
-install -o root -g root -m 644 ipxd.8 $DESTDIR/usr/man/man8
-install -o root -g root -m 644 ipx_ticks.5 $DESTDIR/usr/man/man5
+install -o root -g root -m 644 ipxd.8 $DESTDIR%{_mandir}/man8
+install -o root -g root -m 644 ipx_ticks.5 $DESTDIR%{_mandir}/man5
 install -o root -g root -m 755 $RPM_SOURCE_DIR/generic-LST.init $DESTDIR/etc/rc.d/init.d/ipxripd
 
 # Create and install daemon config file
@@ -85,10 +85,10 @@ lisa --SysV-init remove ipxripd $1
 %config /etc/sysconfig/daemons/ipxripd
 /etc/rc.d/init.d/ipxripd
 /usr/sbin/ipxd
-/usr/man/man5/ipx_ticks.5.gz
-/usr/man/man8/ipxd.8.gz
+%{_mandir}/man5/ipx_ticks.5.gz
+%{_mandir}/man8/ipxd.8.gz
 
 
 %ChangeLog
 * Mon Jan 01 1997 ...
-$Id: ipxripd.spec,v 1.1 1999-04-07 16:32:41 kloczek Exp $
+$Id: ipxripd.spec,v 1.2 1999-05-17 10:23:22 kloczek Exp $
