@@ -1,0 +1,54 @@
+diff -ur ipxripd/ipxd.c ipxripd.new/ipxd.c
+--- ipxripd/ipxd.c	Thu Feb  8 17:24:20 1996
++++ ipxripd.new/ipxd.c	Wed Jul 28 19:08:10 1999
+@@ -61,7 +61,7 @@
+ 
+ int new_log_entry=1;
+ int debug_option=0;
+-FILE *log_file=stderr;
++FILE *log_file;
+ 
+ static IPXNet
+ ifc_net(struct ipx_interface *ifc)
+@@ -676,6 +676,7 @@
+ 		help();
+ 		exit(1);
+ 	}
++	log_file = stderr;
+ 	if (debug_option)
+ 	{
+ 		log_file=stdout;
+diff -ur ipxripd/ipxripd.c ipxripd.new/ipxripd.c
+--- ipxripd/ipxripd.c	Sat Feb  3 18:14:30 1996
++++ ipxripd.new/ipxripd.c	Wed Jul 28 19:08:28 1999
+@@ -38,7 +38,6 @@
+ #include <string.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+-#include <linux/ipx.h>
+ #include "ipxutil.h"
+ #include "ipxkern.h"
+ #include "ipxrip.h"
+diff -ur ipxripd/ipxsapd.c ipxripd.new/ipxsapd.c
+--- ipxripd/ipxsapd.c	Sat Feb  3 14:46:40 1996
++++ ipxripd.new/ipxsapd.c	Wed Jul 28 19:08:34 1999
+@@ -31,7 +31,6 @@
+ #include <errno.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+-#include <linux/ipx.h>
+ #include "ipxutil.h"
+ #include "ipxkern.h"
+ #include "ipxsap.h"
+diff -ur ipxripd/ipxutil.h ipxripd.new/ipxutil.h
+--- ipxripd/ipxutil.h	Thu Feb  1 17:58:48 1996
++++ ipxripd.new/ipxutil.h	Wed Jul 28 17:18:06 1999
+@@ -25,7 +25,7 @@
+ #define __IPXUTIL_H__
+ 
+ #include <stdio.h>
+-#include <linux/ipx.h>
++#include <netipx/ipx.h>
+ 
+ #define IPX_MAX_ERROR	(255)
+ #define IPX_THIS_NET 	(0)

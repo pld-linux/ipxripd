@@ -1,0 +1,55 @@
+#!/bin/sh
+#
+# ipxripd	IPX RIP/SAP routing daemon
+#
+# chkconfig:	345 55 45
+#
+# description:	ipxripd is an implementation of Novell's RIP and SAP protocols.
+#		It automagically builds and updates IPX routing table
+#		in the Linux kernel.
+#		Usefull when trying to get a Linux box to act as an IPX router.
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config
+[ -f /etc/sysconfig/ipxripd ] && . /etc/sysconfig/ipxripd
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && (echo "Error: Networking is down" && exit 0)
+
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/ipxripd ]; then
+		show Starting ipxripd
+		daemon ipxd
+	else
+		echo "ipxripd already is running"
+	fi
+	touch /var/lock/subsys/ipxripd
+	;;
+  stop)
+	show Stopping ipxd
+	killproc ipxd
+	rm -f /var/lock/subsys/ipxripd
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	;;
+  status)
+	status ipxd
+	;;
+  *)
+	echo "Usage: $0 {start|stop|status|restart|reload}"
+	exit 1
+esac
+
+exit 0
+
