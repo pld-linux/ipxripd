@@ -2,7 +2,7 @@
 #
 # ipxripd	IPX RIP/SAP routing daemon
 #
-# chkconfig:	345 55 45
+# chkconfig:	345 35 89
 #
 # description:	ipxripd is an implementation of Novell's RIP and SAP protocols.
 #		It automagically builds and updates IPX routing table
@@ -31,7 +31,11 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/ipxripd ]; then
 		msg_starting ipxripd
-		daemon ipxd
+		OPTIONS=""
+		[ "$PASSIVE" = "yes" ] && OPTIONS="-p"
+		[ -n "$LOGFILE" ] && OPTIONS="$OPTIONS -l $LOGFILE"
+		[ -n "$TICKSFILE" ] && OPTIONS="$OPTIONS -t $TICKSFILE"
+		daemon ipxd $OPTIONS
 	else
 		msg_Already_Running ipxripd
 		exit 1
