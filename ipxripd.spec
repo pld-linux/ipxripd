@@ -83,7 +83,7 @@ fi
 
 %attr(754,root,root) /etc/rc.d/init.d/ipxripd
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
-%attr(640,root,root) /etc/logrotate.d/ipxripd
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/ipxripd
 
 %attr(755,root,root) %{_sbindir}/ipxd
 
