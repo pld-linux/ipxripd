@@ -1,0 +1,12 @@
+# Customized setings for ipxd
+
+# Run in passive mode? Suintable for workstations, NOT routers
+PASSIVE=no
+
+LOGFILE=/var/log/ipxd
+
+# default /etc/ipx_ticks
+TICKSFILE=
+
+# Define nice level for ipxd 
+SERVICE_RUN_NICE_LEVEL="+0"
