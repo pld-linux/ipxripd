@@ -91,4 +91,4 @@ lisa --SysV-init remove ipxripd $1
 
 %ChangeLog
 * Mon Jan 01 1997 ...
-$Id: ipxripd.spec,v 1.3 1999-05-17 23:39:55 kloczek Exp $
+$Id: ipxripd.spec,v 1.4 1999-07-09 16:21:56 kloczek Exp $
