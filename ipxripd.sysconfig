@@ -8,5 +8,5 @@ LOGFILE=/var/log/ipxripd
 # default /etc/ipx_ticks
 TICKSFILE=
 
-# Define nice level for ipxd 
+# Define nice level for ipxd
 SERVICE_RUN_NICE_LEVEL="+0"
