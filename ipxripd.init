@@ -19,7 +19,10 @@
 [ -f /etc/sysconfig/ipxripd ] && . /etc/sysconfig/ipxripd
 
 # Check that networking is up.
-[ "${NETWORKING}" = "no" ] && echo "Error: Networking is down" && exit 0
+if [ "${NETWORKING}" = "no" ]; then
+	echo "WARNING: Networking is down. Ipxripd can't be runed."
+	exit 1
+fi
 
 
 # See how we were called.
