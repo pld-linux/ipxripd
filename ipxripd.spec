@@ -15,8 +15,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 ipxripd is an implementation of Novell's RIP and SAP protocols. It
-automagically builds and updates IPX routing table in the Linux kernel.
-Usefull when trying to get a Linux box to act as an IPX router.
+automagically builds and updates IPX routing table in the Linux
+kernel. Usefull when trying to get a Linux box to act as an IPX
+router.
 
 %prep
 %setup -q -n ipxripd
@@ -68,7 +69,7 @@ fi
 %doc {README,ipx_ticks,ipxripd-0.7.lsm}.gz
 
 %attr(754,root,root) /etc/rc.d/init.d/ipxripd
-%attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/*
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
 
 %attr(755,root,root) %{_sbindir}/ipxd
 
