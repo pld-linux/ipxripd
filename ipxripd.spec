@@ -10,7 +10,7 @@ Source0:	ftp://ftp.gwdg.de/pub/linux/misc/ncpfs/%{name}-%{version}.tar.gz
 Source1:	ipxripd.init
 Source2:	ipxripd.sysconfig
 Patch0:		ipxripd-glibc2.1.patch
-Requires:	rc-scripts >= 0.2.0
+Prereq:		rc-scripts >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
