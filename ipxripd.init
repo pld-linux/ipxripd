@@ -19,9 +19,13 @@
 [ -f /etc/sysconfig/ipxripd ] && . /etc/sysconfig/ipxripd
 
 # Check that networking is up.
-if is_no "${NETWORKING}"; then
-	msg_Network_Down ipxripd
-	exit 1
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down ipxripd
+		exit 1
+	fi
+else
+	exit 0
 fi
 
 
@@ -39,14 +43,20 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/ipxripd
 	else
-		msg_Already_Running ipxripd
+		msg_already_running ipxripd
 		exit 1
 	fi
 	;;
   stop)
-	msg_stopping ipxripd
-	killproc ipxd
-	rm -f /var/lock/subsys/ipxripd
+	# Check if the service is already running?
+	if [ -f /var/lock/subsys/ipxripd ]; then
+		msg_stopping ipxripd
+		killproc ipxd
+		rm -f /var/lock/subsys/ipxripd
+	else
+		msg_not_running ipxripd
+		exit 1
+	fi
 	;;
   restart|reload)
 	$0 stop
@@ -56,7 +66,7 @@ case "$1" in
 	status ipxd
 	;;
   *)
-	msg_Usage "$0 {start|stop|status|restart|reload}"
+	msg_usage "$0 {start|stop|restart|reload|status}"
 	exit 1
 esac
 
