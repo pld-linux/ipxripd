@@ -87,8 +87,3 @@ lisa --SysV-init remove ipxripd $1
 %{_sbindir}/ipxd
 %{_mandir}/man5/ipx_ticks.5.gz
 %{_mandir}/man8/ipxd.8.gz
-
-
-%ChangeLog
-* Mon Jan 01 1997 ...
-$Id: ipxripd.spec,v 1.4 1999-07-09 16:21:56 kloczek Exp $
