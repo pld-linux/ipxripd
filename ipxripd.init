@@ -19,8 +19,8 @@
 [ -f /etc/sysconfig/ipxripd ] && . /etc/sysconfig/ipxripd
 
 # Check that networking is up.
-if [ "${NETWORKING}" = "no" ]; then
-	echo "WARNING: Networking is down. Ipxripd can't be runed."
+if is_no "${NETWORKING}"; then
+	msg_Network_Down ipxripd
 	exit 1
 fi
 
@@ -30,15 +30,16 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/ipxripd ]; then
-		show Starting ipxripd
+		msg_starting ipxripd
 		daemon ipxd
 	else
-		echo "ipxripd already is running"
+		msg_Already_Running ipxripd
+		exit 1
 	fi
 	touch /var/lock/subsys/ipxripd
 	;;
   stop)
-	show Stopping ipxd
+	msg_stopping ipxripd
 	killproc ipxd
 	rm -f /var/lock/subsys/ipxripd
 	;;
@@ -50,7 +51,7 @@ case "$1" in
 	status ipxd
 	;;
   *)
-	echo "Usage: $0 {start|stop|status|restart|reload}"
+	msg_Usage "$0 {start|stop|status|restart|reload}"
 	exit 1
 esac
 
