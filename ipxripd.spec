@@ -47,21 +47,11 @@ gzip -9nf README ipx_ticks
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/chkconfig --add ipxripd
-if [ -f /var/lock/subsys/ipxripd ]; then
-	/etc/rc.d/init.d/ipxripd restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/ipxripd start\" to start IPX routing daemon."
-fi
+DESC="IPX routing daemon"; %chkconfig_add
 touch /var/log/ipxd
 
 %preun
-if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/ipxripd ]; then
-		/etc/rc.d/init.d/ipxripd stop >&2
-	fi
-	/sbin/chkconfig --del ipxripd
-fi
+%chkconfig_del
 
 %files
 %defattr(644,root,root,755)
