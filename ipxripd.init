@@ -4,9 +4,9 @@
 #
 # chkconfig:	345 35 89
 #
-# description:	ipxripd is an implementation of Novell's RIP and SAP protocols.
-#		It automagically builds and updates IPX routing table
-#		in the Linux kernel.
+# description:	ipxripd is an implementation of Novell's RIP and SAP protocols. \
+#		It automagically builds and updates IPX routing table \
+#		in the Linux kernel. \
 #		Usefull when trying to get a Linux box to act as an IPX router.
 
 # Source function library
@@ -36,11 +36,12 @@ case "$1" in
 		[ -n "$LOGFILE" ] && OPTIONS="$OPTIONS -l $LOGFILE"
 		[ -n "$TICKSFILE" ] && OPTIONS="$OPTIONS -t $TICKSFILE"
 		daemon ipxd $OPTIONS
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/ipxripd
 	else
 		msg_Already_Running ipxripd
 		exit 1
 	fi
-	touch /var/lock/subsys/ipxripd
 	;;
   stop)
 	msg_stopping ipxripd
@@ -59,5 +60,4 @@ case "$1" in
 	exit 1
 esac
 
-exit 0
-
+exit $RETVAL
