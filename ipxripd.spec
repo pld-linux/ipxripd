@@ -7,7 +7,7 @@ Copyright:	GPL
 Source:		ftp://ftp.gwdg.de/pub/linux/misc/ncpfs/%{name}-%{version}.tar.gz
 Patch:		ipxripd-glibc2.1.patch
 Vendor:		Volker Lendecke <lendecke@namu01.gwdg.de>
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 ipxripd is an implementation of Novell's RIP and SAP protocols. It 
