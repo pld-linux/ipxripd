@@ -13,6 +13,7 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
+Patch1:		%{name}-gcc33.patch
 Prereq:		rc-scripts >= 0.2.0
 Prereq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -35,7 +36,8 @@ IPX.
 
 %prep
 %setup -q -n ipxripd
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} CFLAGS="%{rpmcflags}"
