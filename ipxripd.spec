@@ -3,13 +3,14 @@ Summary(pl):	Demon IPX RIP/SAP - routing dla sieci IPX
 Summary(pt_BR):	O ipxripd é uma implementação dos protocolos RIP e SAP da Novell
 Name:		ipxripd
 Version:	0.7
-Release:	5
+Release:	6
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		Volker Lendecke <lendecke@namu01.gwdg.de>
 Source0:	ftp://ftp.gwdg.de/pub/linux/misc/ncpfs/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
+Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
 Prereq:		rc-scripts >= 0.2.0
 Prereq:		/sbin/chkconfig
@@ -41,7 +42,7 @@ IPX.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},/var/log} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig,rc.d/init.d}
+	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig,logrotate.d,rc.d/init.d}
 
 install ipxd $RPM_BUILD_ROOT%{_sbindir}
 install ipxd.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -49,8 +50,9 @@ install ipx_ticks.5 $RPM_BUILD_ROOT%{_mandir}/man5
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/ipxripd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/ipxripd
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/ipxripd
 
-:> $RPM_BUILD_ROOT/var/log/ipxd
+:> $RPM_BUILD_ROOT/var/log/ipxripd
 
 gzip -9nf README ipx_ticks
 
@@ -80,6 +82,7 @@ fi
 
 %attr(754,root,root) /etc/rc.d/init.d/ipxripd
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
+%attr(640,root,root) /etc/logrotate.d/ipxripd
 
 %attr(755,root,root) %{_sbindir}/ipxd
 
