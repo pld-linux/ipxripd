@@ -3,7 +3,7 @@ Summary(pl):	Demon IPX RIP/SAP - routing dla sieci IPX
 Summary(pt_BR):	O ipxripd é uma implementação dos protocolos RIP e SAP da Novell
 Name:		ipxripd
 Version:	0.7
-Release:	7
+Release:	8
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		Volker Lendecke <lendecke@namu01.gwdg.de>
@@ -14,6 +14,7 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
 Patch1:		%{name}-gcc33.patch
+Patch2:		%{name}-kernel26.patch
 PreReq:		rc-scripts >= 0.2.0
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -38,6 +39,7 @@ IPX.
 %setup -q -n ipxripd
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} CFLAGS="%{rpmcflags}"
