@@ -15,8 +15,8 @@ Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
 Patch1:		%{name}-gcc33.patch
 Patch2:		%{name}-kernel26.patch
-PreReq:		rc-scripts >= 0.2.0
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,7 +36,7 @@ Linux. Útil quando se deseja utilizar uma máquina Linux como roteador
 IPX.
 
 %prep
-%setup -q -n ipxripd
+%setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -84,8 +84,8 @@ fi
 %doc README ipx_ticks
 
 %attr(754,root,root) /etc/rc.d/init.d/ipxripd
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/logrotate.d/ipxripd
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/ipxripd
 
 %attr(755,root,root) %{_sbindir}/ipxd
 
