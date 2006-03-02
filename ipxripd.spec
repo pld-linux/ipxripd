@@ -6,7 +6,6 @@ Version:	0.7
 Release:	9
 License:	GPL
 Group:		Networking/Daemons
-Vendor:		Volker Lendecke <lendecke@namu01.gwdg.de>
 Source0:	ftp://ftp.gwdg.de/pub/linux/misc/ncpfs/%{name}-%{version}.tar.gz
 # Source0-md5:	5e1ae45421d45eca67a435c6e5467ea1
 Source1:	%{name}.init
@@ -15,6 +14,7 @@ Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
 Patch1:		%{name}-gcc33.patch
 Patch2:		%{name}-kernel26.patch
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,7 +42,8 @@ IPX.
 %patch2 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -64,18 +65,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add ipxripd
-if [ -f /var/lock/subsys/ipxripd ]; then
-	/etc/rc.d/init.d/ipxripd restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/ipxripd start\" to start IPX routing daemon."
+if [ ! -f /var/log/ipxd ]; then
+	umask 002
+	touch /var/log/ipxd
 fi
-touch /var/log/ipxd
+%service ipxripd restart "IPX routing daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/ipxripd ]; then
-		/etc/rc.d/init.d/ipxripd stop >&2
-	fi
+	%service ipxripd stop
 	/sbin/chkconfig --del ipxripd
 fi
 
