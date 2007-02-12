@@ -1,6 +1,6 @@
 Summary:	IPX RIP/SAP daemon - routing for IPX networks
-Summary(pl):	Demon IPX RIP/SAP - routing dla sieci IPX
-Summary(pt_BR):	O ipxripd È uma implementaÁ„o dos protocolos RIP e SAP da Novell
+Summary(pl.UTF-8):   Demon IPX RIP/SAP - routing dla sieci IPX
+Summary(pt_BR.UTF-8):   O ipxripd √© uma implementa√ß√£o dos protocolos RIP e SAP da Novell
 Name:		ipxripd
 Version:	0.7
 Release:	9
@@ -24,15 +24,15 @@ ipxripd is an implementation of Novell's RIP and SAP protocols. It
 automagically builds and updates IPX routing table in the Linux
 kernel. Useful when trying to get a Linux box to act as an IPX router.
 
-%description -l pl
-ipxripd jest implementacj± protoko≥Ûw RIP i SAP Novella. Automagicznie
-buduje i uaktualnia tablice routingu IPX w kernelu Linuksa. Uøyteczny
-kiedy chcemy by Linux dzia≥a≥ jako router IPX.
+%description -l pl.UTF-8
+ipxripd jest implementacjƒÖ protoko≈Ç√≥w RIP i SAP Novella. Automagicznie
+buduje i uaktualnia tablice routingu IPX w kernelu Linuksa. U≈ºyteczny
+kiedy chcemy by Linux dzia≈Ça≈Ç jako router IPX.
 
-%description -l pt_BR
-O ipxripd È uma implementaÁ„o dos protocolos RIP e SAP da Novell. Ele
-gerencia de forma autom·tica tabelas de roteamento IPX no kernel
-Linux. ⁄til quando se deseja utilizar uma m·quina Linux como roteador
+%description -l pt_BR.UTF-8
+O ipxripd √© uma implementa√ß√£o dos protocolos RIP e SAP da Novell. Ele
+gerencia de forma autom√°tica tabelas de roteamento IPX no kernel
+Linux. √ötil quando se deseja utilizar uma m√°quina Linux como roteador
 IPX.
 
 %prep
