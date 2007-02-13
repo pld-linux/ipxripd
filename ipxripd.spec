@@ -1,6 +1,6 @@
 Summary:	IPX RIP/SAP daemon - routing for IPX networks
-Summary(pl.UTF-8):   Demon IPX RIP/SAP - routing dla sieci IPX
-Summary(pt_BR.UTF-8):   O ipxripd é uma implementação dos protocolos RIP e SAP da Novell
+Summary(pl.UTF-8):	Demon IPX RIP/SAP - routing dla sieci IPX
+Summary(pt_BR.UTF-8):	O ipxripd é uma implementação dos protocolos RIP e SAP da Novell
 Name:		ipxripd
 Version:	0.7
 Release:	9
