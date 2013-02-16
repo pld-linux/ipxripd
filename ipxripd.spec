@@ -14,6 +14,7 @@ Source3:	%{name}.logrotate
 Patch0:		%{name}-glibc2.1.patch
 Patch1:		%{name}-gcc33.patch
 Patch2:		%{name}-kernel26.patch
+Patch3:		%{name}-format-security.patch
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
@@ -40,6 +41,7 @@ IPX.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__make} \

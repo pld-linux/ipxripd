@@ -1,0 +1,11 @@
+--- ipxripd/ipxsap.c.formatsec	2013-02-16 12:06:38.549069871 +0100
++++ ipxripd/ipxsap.c	2013-02-16 12:07:02.612272842 +0100
+@@ -229,7 +229,7 @@ ipx_sap_fprint_name(FILE * file, char *s
+ 	name[IPX_SAP_SERVER_NAME_LEN] = 0;
+ 	len = strlen(name);
+ 	memset(name + len, ' ', IPX_SAP_SERVER_NAME_LEN - len);
+-	fprintf(file, name);
++	fputs(name, file);
+ }
+ 
+ static void 
